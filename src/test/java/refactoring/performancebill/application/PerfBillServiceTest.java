@@ -51,7 +51,7 @@ class PerfBillServiceTest {
             , "tragedy");
 
     @Test
-    void createBill_1场表演_悲剧_不大于30人() {
+    void should_create_bill_correct_when_calculate_performance_bill_given_an_tragedy_and_audience_less_than_30() {
         doReturn(HAMLET).when(mockPlayRepository).findById("hamlet");
         verifyCreateBillForOnePerformance(
                 "hamlet"
@@ -62,7 +62,7 @@ class PerfBillServiceTest {
     }
 
     @Test
-    void createBill_1场表演_悲剧_大于30人() {
+    void should_create_bill_correct_when_calculate_performance_bill_given_an_tragedy_and_audience_more_than_30() {
         doReturn(OTHELLO).when(mockPlayRepository).findById("othello");
         verifyCreateBillForOnePerformance(
                 "othello"
@@ -75,7 +75,7 @@ class PerfBillServiceTest {
     }
 
     @Test
-    void createBill_1场表演_喜剧_不大于20人() {
+    void should_create_bill_correct_when_calculate_performance_bill_given_an_comedy_audience_less_than_20() {
         doReturn(AS_LIKE).when(mockPlayRepository).findById("as-like");
         verifyCreateBillForOnePerformance(
                 "as-like"
@@ -88,7 +88,7 @@ class PerfBillServiceTest {
     }
 
     @Test
-    void createBill_1场表演_喜剧_大于20人() {
+    void should_create_bill_correct_when_calculate_performance_bill_given_an_comedy_audience_more_than_20() {
         doReturn(AS_LIKE).when(mockPlayRepository).findById("as-like");
 
         verifyCreateBillForOnePerformance(
