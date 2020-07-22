@@ -24,16 +24,4 @@ public class PerfBillItem {
         this.amount = amount;
         this.audience = audience;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getAudience() {
-        return audience;
-    }
 }

@@ -22,26 +22,19 @@ public class PerfBillService {
 
     @Transactional
     public PerfBill createBill(@RequestBody PerfSummary perfSummary) {
-        PerfBill bill;
 
         int totalAmount = 0;
         int volumeCredits = 0;
-
-        bill = new PerfBill(perfSummary.getCustomer());
+        PerfBill bill = new PerfBill(perfSummary.getCustomer());
 
         for (Perf perf : perfSummary.getPerfs()) {
             Play play = playRepository.findById(perf.getPlayId());
 
             Calculator calculator = buildCalculator(play);
-            int thisAmount = calculator.calAmount(perf, play);
-            int thisCredits = calculator.calCredits(perf, play);
+            volumeCredits += calculator.calCredits(perf, play);
+            totalAmount += calculator.calAmount(perf, play);
 
-            volumeCredits += thisCredits;
-            totalAmount += thisAmount;
-
-            bill.addItem(play.getName(), thisAmount, perf.getAudience());
-
-
+            bill.addItem(play.getName(), calculator.calAmount(perf, play), perf.getAudience());
         }
 
         bill.setTotalAmount(totalAmount);

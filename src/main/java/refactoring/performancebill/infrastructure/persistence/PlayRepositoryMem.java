@@ -16,9 +16,6 @@ public class PlayRepositoryMem implements PlayRepository {
         plays.put("as-like", new Play("as-like", "As You Like It", "comedy"));
         plays.put("othello", new Play("othello", "Othello", "tragedy"));
 
-
-
-
         return plays.get(playId);
     }
 }

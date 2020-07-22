@@ -27,9 +27,6 @@ public class PerfBill {
     public PerfBill(String customer) {
         this.customer = customer;
     }
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
 
     @Deprecated
     public void addItem(PerfBillItem item) {
@@ -54,10 +51,6 @@ public class PerfBill {
 
     public void setVolumeCredits(int volumeCredits) {
         this.volumeCredits = volumeCredits;
-    }
-
-    public int getTotalAmount() {
-        return totalAmount;
     }
 
     public int getVolumeCredits() {
