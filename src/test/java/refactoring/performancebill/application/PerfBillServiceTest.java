@@ -21,12 +21,6 @@ import refactoring.performancebill.domain.model.perfsummary.PerfSummary;
 import refactoring.performancebill.domain.model.play.Play;
 import refactoring.performancebill.domain.model.play.PlayRepository;
 
-// Done 1场表演_悲剧_不大于30人
-// Done 1场表演_悲剧_大于30人
-// Done 1场表演_喜剧_不大于20人
-// Done 1场表演_喜剧_大于20人
-// Done 没有表演
-
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 class PerfBillServiceTest {
@@ -120,19 +114,10 @@ class PerfBillServiceTest {
         verify(mockBillRepository).save(argument.capture());
         PerfBill actual = argument.getValue();
 
-        //Approach 1
         assertThat(actual.getCustomer()).isEqualTo(company);
         assertThat(actual.getVolumeCredits()).isEqualTo(expectedVolumeCredits);
         assertThat(actual.getItems()).hasSize(1)
                 .extracting("name", "amount", "audience")
                 .contains(tuple(expectedPlayName, expectedAmount, audience));
-
-        // Approach 2
-//        PerformanceBill expected = new PerformanceBill(company)
-//                .setTotalAmount(expectedAmount)
-//                .setVolumeCredits(expectedVolumeCredits)
-//                .addItem(expectedPlayName, expectedAmount, audience);
-//
-//        assertThat(actual).isEqualToComparingFieldByFieldRecursively(expected);
     }
 }
